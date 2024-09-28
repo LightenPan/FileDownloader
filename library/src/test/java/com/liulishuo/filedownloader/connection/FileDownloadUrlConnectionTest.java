@@ -55,7 +55,7 @@ public class FileDownloadUrlConnectionTest {
     public void construct_noConfiguration_noAssigned() throws IOException {
         FileDownloadUrlConnection.Creator creator = new FileDownloadUrlConnection.Creator();
 
-        creator.create("http://blog.dreamtobe.cn");
+        creator.create("http://blog.dreamtobe.cn", false);
 
         verify(mConnection, times(0)).setConnectTimeout(anyInt());
         verify(mConnection, times(0)).setReadTimeout(anyInt());
@@ -72,7 +72,7 @@ public class FileDownloadUrlConnectionTest {
                         .readTimeout(1002)
         );
 
-        creator.create(mURL);
+        creator.create(mURL, false);
 
         verify(mURL).openConnection(mProxy);
         verify(mConnection).setConnectTimeout(1001);

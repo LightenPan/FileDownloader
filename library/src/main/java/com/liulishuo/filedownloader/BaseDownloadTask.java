@@ -27,7 +27,7 @@ import com.liulishuo.filedownloader.util.FileDownloadUtils;
  * @see FileDownloader
  * @see ITaskHunter
  */
-@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
+@SuppressWarnings({"WeakerAccess", "UnusedReturnValue", "dep-ann"})
 public interface BaseDownloadTask {
 
     int DEFAULT_CALLBACK_PROGRESS_MIN_INTERVAL_MILLIS = 10;

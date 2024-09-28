@@ -108,7 +108,7 @@ public class RedirectHandler {
             Map<String, List<String>> requestHeaderFields,
             String newUrl) throws IOException {
         FileDownloadConnection redirectConnection = CustomComponentHolder.getImpl().
-                createConnection(newUrl);
+                createConnection(newUrl, false);
 
         String name;
         List<String> list;

@@ -33,7 +33,7 @@ import com.liulishuo.filedownloader.util.FileDownloadLog;
  * @see FileDownloadNotificationListener
  * @see BaseDownloadTask#setSyncCallback(boolean)
  */
-@SuppressWarnings({"WeakerAccess", "UnusedParameters"})
+@SuppressWarnings({"WeakerAccess", "UnusedParameters", "dep-ann"})
 public abstract class FileDownloadListener {
 
     public FileDownloadListener() {

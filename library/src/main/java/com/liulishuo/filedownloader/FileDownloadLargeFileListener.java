@@ -21,7 +21,7 @@ package com.liulishuo.filedownloader;
  * <p>
  * This listener will be used when the file size of the task is greater than 1.99G.
  */
-@SuppressWarnings({"WeakerAccess", "UnusedParameters"})
+@SuppressWarnings({"WeakerAccess", "UnusedParameters", "dep-ann"})
 public abstract class FileDownloadLargeFileListener extends FileDownloadListener {
 
     public FileDownloadLargeFileListener() {

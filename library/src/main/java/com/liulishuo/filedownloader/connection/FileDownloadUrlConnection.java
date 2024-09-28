@@ -17,6 +17,7 @@
 package com.liulishuo.filedownloader.connection;
 
 import com.liulishuo.filedownloader.util.FileDownloadHelper;
+import com.liulishuo.filedownloader.util.FileDownloadLog;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,16 +36,20 @@ import java.util.Map;
 public class FileDownloadUrlConnection implements FileDownloadConnection {
     protected URLConnection mConnection;
 
-    public FileDownloadUrlConnection(String originUrl, Configuration configuration)
+    public FileDownloadUrlConnection(String originUrl, Configuration configuration, boolean useProxy)
             throws IOException {
-        this(new URL(originUrl), configuration);
+        this(new URL(originUrl), configuration, useProxy);
     }
 
-    public FileDownloadUrlConnection(URL url, Configuration configuration) throws IOException {
-        if (configuration != null && configuration.proxy != null) {
+    public FileDownloadUrlConnection(URL url, Configuration configuration, boolean useProxy) throws IOException {
+        if (FileDownloadLog.NEED_LOG) {
+            FileDownloadLog.d(FileDownloadUrlConnection.class, "useProxy: %s, configuration: %s", useProxy, configuration);
+        }
+        if (configuration != null && configuration.proxy != null && useProxy) {
             mConnection = url.openConnection(configuration.proxy);
         } else {
             mConnection = url.openConnection();
+            FileDownloadLog.d(FileDownloadUrlConnection.class, "no proxy");
         }
         if (mConnection instanceof HttpURLConnection) {
             ((HttpURLConnection) mConnection).setInstanceFollowRedirects(false);
@@ -61,8 +66,8 @@ public class FileDownloadUrlConnection implements FileDownloadConnection {
         }
     }
 
-    public FileDownloadUrlConnection(String originUrl) throws IOException {
-        this(originUrl, null);
+    public FileDownloadUrlConnection(String originUrl, boolean useProxy) throws IOException {
+        this(originUrl, null, useProxy);
     }
 
     @Override
@@ -138,13 +143,13 @@ public class FileDownloadUrlConnection implements FileDownloadConnection {
             this.mConfiguration = configuration;
         }
 
-        FileDownloadConnection create(URL url) throws IOException {
-            return new FileDownloadUrlConnection(url, mConfiguration);
+        FileDownloadConnection create(URL url, boolean useProxy) throws IOException {
+            return new FileDownloadUrlConnection(url, mConfiguration, useProxy);
         }
 
         @Override
-        public FileDownloadConnection create(String originUrl) throws IOException {
-            return new FileDownloadUrlConnection(originUrl, mConfiguration);
+        public FileDownloadConnection create(String originUrl, boolean useProxy) throws IOException {
+            return new FileDownloadUrlConnection(originUrl, mConfiguration, useProxy);
         }
     }
 

@@ -183,7 +183,7 @@ public class FileDownloadHelper {
          * @return The connection creator.
          * @throws IOException if an I/O exception occurs.
          */
-        FileDownloadConnection create(String url) throws IOException;
+        FileDownloadConnection create(String url, boolean useProxy) throws IOException;
     }
 
     /**

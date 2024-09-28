@@ -28,8 +28,9 @@ import com.liulishuo.filedownloader.util.FileDownloadUtils;
  *
  * @see com.liulishuo.filedownloader.FileDownloader#setTaskCompleted
  * @deprecated No used. {@link FileDownloader#setTaskCompleted(String, String, long)}
+ * @noinspection ALL
  */
-@SuppressWarnings({"WeakerAccess", "deprecation", "DeprecatedIsStillUsed"})
+@SuppressWarnings("dep-ann")
 public class FileDownloadTaskAtom implements Parcelable {
     private String url;
     private String path;

@@ -1,12 +1,39 @@
 apply plugin: 'com.android.library'
 
 android {
+    namespace = "com.liulishuo.filedownloader"
+
     compileSdkVersion COMPILE_SDK_VERSION as int
     buildToolsVersion BUILD_TOOLS_VERSION as String
 
     defaultConfig {
         minSdkVersion 9
-        versionName VERSION_NAME as String
+        versionName = "1.7.5-1"
+    }
+
+    // 修改AAR文件的名称
+    archivesBaseName = "com.liulishuo.filedownloader"
+
+    buildFeatures{
+        aidl true
+        buildConfig = true
+    }
+
+    sourceSets.main {
+        manifest.srcFile 'src/main/AndroidManifest.xml'
+        java.srcDirs = ['src/main/java', 'src/main/aidl']
+        resources.srcDirs = ['src/main/java', 'src/main/aidl']
+        aidl.srcDirs = ['src/main/aidl']
+        res.srcDirs = ['src/main/res']
+    }
+
+    buildTypes {
+        release {
+            buildConfigField "String", "VERSION_NAME", "\"1.7.5-1\""
+        }
+        debug {
+            buildConfigField "String", "VERSION_NAME", "\"1.7.5-1-DEBUG\""
+        }
     }
 }
 
@@ -39,4 +66,4 @@ dependencies {
     testImplementation "org.robolectric:robolectric:3.3.2"
 }
 
-apply from: rootProject.file('gradle/mvn-push.gradle')
+//apply from: rootProject.file('gradle/mvn-push.gradle')

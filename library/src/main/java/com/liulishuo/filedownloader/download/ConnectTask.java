@@ -75,7 +75,16 @@ public class ConnectTask {
     }
 
     FileDownloadConnection connect() throws IOException, IllegalAccessException {
-        FileDownloadConnection connection = CustomComponentHolder.getImpl().createConnection(url);
+        boolean useProxy = false;
+        if (header.getHeaders().containsKey("proxyHack")) {
+            String proxyHack = String.valueOf(header.getHeaders().get("proxyHack"));
+            // FileDownloadLog.e(this, "proxyHack: %s", proxyHack);
+            useProxy = proxyHack.contains("true");
+        }
+        if (FileDownloadLog.NEED_LOG) {
+            FileDownloadLog.i(this, "useProxy: %s, header: %s", useProxy, header);
+        }
+        FileDownloadConnection connection = CustomComponentHolder.getImpl().createConnection(url, useProxy);
 
         addUserRequiredHeader(connection);
         addRangeHeader(connection);

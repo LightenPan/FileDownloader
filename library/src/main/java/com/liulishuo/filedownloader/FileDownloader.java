@@ -42,7 +42,7 @@ import java.util.List;
  * @see com.liulishuo.filedownloader.services.FileDownloadService The service for FileDownloader.
  * @see FileDownloadProperties
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "dep-ann"})
 public class FileDownloader {
 
     /**
@@ -105,7 +105,6 @@ public class FileDownloader {
 
         setup(context);
     }
-
 
     /**
      * @deprecated please using {@link #setupOnApplicationOnCreate(Application)} instead.
@@ -758,6 +757,4 @@ public class FileDownloader {
 
         return mLostConnectedHandler;
     }
-
-
 }

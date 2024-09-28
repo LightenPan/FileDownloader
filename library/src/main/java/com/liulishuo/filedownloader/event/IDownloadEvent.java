@@ -21,7 +21,7 @@ import com.liulishuo.filedownloader.util.FileDownloadLog;
 /**
  * An atom event.
  */
-@SuppressWarnings({"WeakerAccess", "CanBeFinal"})
+@SuppressWarnings({"WeakerAccess", "CanBeFinal", "dep-ann"})
 public abstract class IDownloadEvent {
     public Runnable callback = null;
 

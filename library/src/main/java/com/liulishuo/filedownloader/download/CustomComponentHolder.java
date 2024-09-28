@@ -62,8 +62,8 @@ public class CustomComponentHolder {
         }
     }
 
-    public FileDownloadConnection createConnection(String url) throws IOException {
-        return getConnectionCreator().create(url);
+    public FileDownloadConnection createConnection(String url, boolean useProxy) throws IOException {
+        return getConnectionCreator().create(url, useProxy);
     }
 
     public FileDownloadOutputStream createOutputStream(File file) throws IOException {

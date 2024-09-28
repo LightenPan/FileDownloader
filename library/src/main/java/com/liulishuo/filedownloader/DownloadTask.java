@@ -31,7 +31,7 @@ import java.util.ArrayList;
 /**
  * The download task.
  */
-
+@SuppressWarnings("dep-ann")
 public class DownloadTask implements BaseDownloadTask, BaseDownloadTask.IRunningTask,
         DownloadTaskHunter.ICaptureTask {
 
